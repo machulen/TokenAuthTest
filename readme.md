@@ -1,28 +1,24 @@
-## Wartech coding challenge
+## Token Authorization Test
 
-### You would need:
+This is an API written with Express that can authenticate users and store them in your db.
+
+### Technologies used:
 * Node.js
-* Any database you like
+* Express.js
+* Mongodb
+* mongoose
+* bcrypt
+* JWT
 
-## Your task:
-* Write an API with Express
-* Use the API to authenticate users and store them in your db
-
-* Your API should allow users:
+* The API allows users:
    * To register
    * To Login
    * To Logout
 
-* Your API should pass all integration tests: ```npm test```
+* The API passes all integration tests: ```npm test```
 
-### You should:
-* Use git
-* Commit after finishing meaningfull part of work
-* Push your code into github/bitbucket
+# Setup
 
-### You could:
-* Use any npm library you like
-* Use any controll flow patterns: callbacks, promises, generators, co, kgo, etc...
-
-### Be ready
-* To explain your decisions
+Of course, you need MongoDB installed.
+Clone the repo and install its deps: ```npm i```
+Then change your secret in ```config.js``` file and don't commit it with GIT :)

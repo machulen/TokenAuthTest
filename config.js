@@ -1,3 +1,3 @@
 module.exports = {
-  'secret': 'supersecret'
+  'secret': 'supersecret' // shoudn't be exposed like this in production
 };
