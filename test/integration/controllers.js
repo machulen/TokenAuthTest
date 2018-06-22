@@ -57,33 +57,33 @@ describe('Authentication Controller', () => {
   });
 });
 
-// describe('Profile controller', () => {
+describe('Profile controller', () => {
 
-//   let _token = null;
+  let _token = null;
 
-//   before(() => {
-//     return request(app)
-//       .post('/api/login')
-//       .send({ email, password })
-//       .then((data) => {
-//         _token = data.body.token;
-//         assert.ok(_token);
-//       });
-//   });
+  before(() => {
+    return request(app)
+      .post('/api/login')
+      .send({ email, password })
+      .then((data) => {
+        _token = data.body.token;
+        assert.ok(_token);
+      });
+  });
 
-//   it('should fetch the profile info of existing user', () => {
-//     return request(app)
-//       .get('/api/profile')
-//       .set('Authorization', 'Bearer ' + _token)
-//       .expect(200)
-//       .then((data) => {
-//         assert.equal(data.body.email, _user);
-//       });
-//   });
+  it('should fetch the profile info of existing user', () => {
+    return request(app)
+      .get('/api/profile')
+      .set('Authorization', 'Bearer ' + _token)
+      .expect(200)
+      .then((data) => {
+        assert.equal(data.body.email, email);
+      });
+  });
 
-//   it('should return an error when token is not specified', () => {
-//     return request(app)
-//       .get('/api/profile')
-//       .expect(401);
-//   });
-// });
+  it('should return an error when token is not specified', () => {
+    return request(app)
+      .get('/api/profile')
+      .expect(401);
+  });
+});
