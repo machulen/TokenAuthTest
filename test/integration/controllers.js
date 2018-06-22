@@ -42,19 +42,19 @@ describe('Authentication Controller', () => {
       .expect(400);
   });
 
-  // it('should return an error bad request if email isn\'t specified', () => {
-  //   return request(app)
-  //     .post('/api/register')
-  //     .send({ password, name })
-  //     .expect(400);
-  // });
+  it('should return an error bad request if email isn\'t specified', () => {
+    return request(app)
+      .post('/api/register')
+      .send({ password, name })
+      .expect(400);
+  });
 
-  // it('should return an error bad request if password isn\'t specified', () => {
-  //   return request(app)
-  //     .post('/api/register')
-  //     .send({ email, name })
-  //     .expect(400);
-  // });
+  it('should return an error bad request if password isn\'t specified', () => {
+    return request(app)
+      .post('/api/register')
+      .send({ email, name })
+      .expect(400);
+  });
 });
 
 // describe('Profile controller', () => {

@@ -46,6 +46,8 @@ router.post('/register', function(req, res) {
   User.findOne({ email: req.body.email }, function (err, user) {
     if (err) return res.status(500).send('Error on the server.');
     if (user) return res.status(400).send('This email is already taken.');
+    if (!req.body.email) return res.status(400).send('Email is missing.');
+    if (!req.body.password) return res.status(400).send('Password is missing.');
     
     var hashedPassword = bcrypt.hashSync(req.body.password, 8);
 
