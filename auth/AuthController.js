@@ -43,25 +43,29 @@ router.get('/logout', function(req, res) {
 
 router.post('/register', function(req, res) {
 
-  var hashedPassword = bcrypt.hashSync(req.body.password, 8);
+  User.findOne({ email: req.body.email }, function (err, user) {
+    if (err) return res.status(500).send('Error on the server.');
+    if (user) return res.status(400).send('This email is already taken.');
+    
+    var hashedPassword = bcrypt.hashSync(req.body.password, 8);
 
-  User.create({
-    name : req.body.name,
-    email : req.body.email,
-    password : hashedPassword
-  }, 
-  function (err, user) {
-    if (err) return res.status(500).send("There was a problem registering the user`.");
+    User.create({
+      name : req.body.name,
+      email : req.body.email,
+      password : hashedPassword
+    }, 
+    function (err, user) {
+      if (err) return res.status(500).send("There was a problem registering the user`.");
 
-    // if user is registered without errors
-    // create a token
-    var token = jwt.sign({ id: user._id }, config.secret, {
-      expiresIn: 86400 // expires in 24 hours
+      // if user is registered without errors
+      // create a token
+      var token = jwt.sign({ id: user._id }, config.secret, {
+        expiresIn: 86400 // expires in 24 hours
+      });
+
+      res.status(201).send({ auth: true, token: token });
     });
-
-    res.status(201).send({ auth: true, token: token });
   });
-
 });
 
 router.get('/me', VerifyToken, function(req, res, next) {

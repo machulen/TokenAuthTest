@@ -35,12 +35,12 @@ describe('Authentication Controller', () => {
       });
   });
 
-  // it('should return an error bad request if email is used', () => {
-  //   return request(app)
-  //     .post('/api/register')
-  //     .send({ email, password, name})
-  //     .expect(400);
-  // });
+  it('should return an error bad request if email is used', () => {
+    return request(app)
+      .post('/api/register')
+      .send({ email, password, name})
+      .expect(400);
+  });
 
   // it('should return an error bad request if email isn\'t specified', () => {
   //   return request(app)
